@@ -15,6 +15,7 @@ from typing import Dict
 
 from .base import BaseIntegrationSkill
 from .figma import FigmaSkill
+from .github_tools import GITHUB_TOOLS
 from .google_calendar import GoogleCalendarSkill
 from .google_drive import GoogleDriveSkill
 from .oauth_integrations import OAUTH_TOOLS
@@ -32,8 +33,15 @@ SKILLS: Dict[str, BaseIntegrationSkill] = {
     # pipedrive, attio, zoho_crm, mailchimp, airtable, gitlab, linkedin,
     # twitter_x, xero, microsoft, youtube.
     **OAUTH_TOOLS,
+    # 14 GitHub + Git tools from github_tools.py:
+    #   GitHub API (BYOK PAT): github_create_repo, github_list_repos,
+    #     github_list_files, github_download_file, github_upload_file,
+    #     github_pull_request, github_issue, github_commit, github_comment.
+    #   Git CLI (delegates to code_execution_service):
+    #     git_clone, git_branch, git_merge, git_push, git_pull.
+    **GITHUB_TOOLS,
     # Future:
-    # (dev_tools.py, github_tools.py, email_tools.py, google_docs_tools.py
+    # (dev_tools.py, email_tools.py, google_docs_tools.py
     #  — see MIGRATION_PLAYBOOK.md in repo root)
 }
 

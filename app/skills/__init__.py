@@ -14,6 +14,7 @@ from __future__ import annotations
 from typing import Dict
 
 from .base import BaseIntegrationSkill
+from .email_tools import EMAIL_TOOLS
 from .figma import FigmaSkill
 from .github_tools import GITHUB_TOOLS
 from .google_calendar import GoogleCalendarSkill
@@ -40,8 +41,13 @@ SKILLS: Dict[str, BaseIntegrationSkill] = {
     #   Git CLI (delegates to code_execution_service):
     #     git_clone, git_branch, git_merge, git_push, git_pull.
     **GITHUB_TOOLS,
+    # 7 email/messaging tools from email_tools.py:
+    #   gmail_send, gmail_read (Gmail REST API),
+    #   slack_send, slack_read (Slack — pipeline-delegated),
+    #   send_email, configure_smtp, delete_smtp (SMTP — pipeline-delegated).
+    **EMAIL_TOOLS,
     # Future:
-    # (dev_tools.py, email_tools.py, google_docs_tools.py
+    # (dev_tools.py, google_docs_tools.py
     #  — see MIGRATION_PLAYBOOK.md in repo root)
 }
 

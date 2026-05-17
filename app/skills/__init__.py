@@ -15,16 +15,18 @@ from typing import Dict
 
 from .base import BaseIntegrationSkill
 from .figma import FigmaSkill
+from .google_calendar import GoogleCalendarSkill
+from .google_drive import GoogleDriveSkill
+from .sigma import SigmaSkill
 
 
 SKILLS: Dict[str, BaseIntegrationSkill] = {
     "figma": FigmaSkill(),
+    "google_drive": GoogleDriveSkill(),
+    "google_calendar": GoogleCalendarSkill(),
+    "sigma": SigmaSkill(),
     # Future:
-    # "google_drive":     GoogleDriveSkill(),
-    # "google_calendar":  GoogleCalendarSkill(),
-    # "sigma":            SigmaSkill(),
-    # (web_tools.py, dev_tools.py, github_tools.py, filesystem_tools.py,
-    #  media_tools.py, email_tools.py, google_docs_tools.py,
+    # (dev_tools.py, github_tools.py, email_tools.py, google_docs_tools.py,
     #  oauth_integrations.py — see MIGRATION_PLAYBOOK.md in repo root)
 }
 

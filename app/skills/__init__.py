@@ -17,6 +17,7 @@ from .base import BaseIntegrationSkill
 from .figma import FigmaSkill
 from .google_calendar import GoogleCalendarSkill
 from .google_drive import GoogleDriveSkill
+from .oauth_integrations import OAUTH_TOOLS
 from .sigma import SigmaSkill
 
 
@@ -25,9 +26,15 @@ SKILLS: Dict[str, BaseIntegrationSkill] = {
     "google_drive": GoogleDriveSkill(),
     "google_calendar": GoogleCalendarSkill(),
     "sigma": SigmaSkill(),
+    # 26 OAuth integrations from oauth_integrations.py:
+    # notion, discord, asana, clickup, linear, monday, miro, atlassian,
+    # zoom, calendly, dropbox, dribbble, typeform, hubspot, salesforce,
+    # pipedrive, attio, zoho_crm, mailchimp, airtable, gitlab, linkedin,
+    # twitter_x, xero, microsoft, youtube.
+    **OAUTH_TOOLS,
     # Future:
-    # (dev_tools.py, github_tools.py, email_tools.py, google_docs_tools.py,
-    #  oauth_integrations.py — see MIGRATION_PLAYBOOK.md in repo root)
+    # (dev_tools.py, github_tools.py, email_tools.py, google_docs_tools.py
+    #  — see MIGRATION_PLAYBOOK.md in repo root)
 }
 
 

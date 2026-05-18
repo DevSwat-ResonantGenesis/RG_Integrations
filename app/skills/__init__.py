@@ -18,6 +18,7 @@ from .email_tools import EMAIL_TOOLS
 from .figma import FigmaSkill
 from .github_tools import GITHUB_TOOLS
 from .google_calendar import GoogleCalendarSkill
+from .google_docs_tools import GOOGLE_DOCS_TOOLS
 from .google_drive import GoogleDriveSkill
 from .oauth_integrations import OAUTH_TOOLS
 from .sigma import SigmaSkill
@@ -46,8 +47,10 @@ SKILLS: Dict[str, BaseIntegrationSkill] = {
     #   slack_send, slack_read (Slack — pipeline-delegated),
     #   send_email, configure_smtp, delete_smtp (SMTP — pipeline-delegated).
     **EMAIL_TOOLS,
+    # 3 Google productivity tools: google_sheets, google_docs, create_presentation.
+    **GOOGLE_DOCS_TOOLS,
     # Future:
-    # (dev_tools.py, google_docs_tools.py
+    # (dev_tools.py
     #  — see MIGRATION_PLAYBOOK.md in repo root)
 }
 

@@ -21,6 +21,10 @@ logger = logging.getLogger(__name__)
 
 GITHUB_API = "https://api.github.com"
 CODE_EXEC_URL = os.getenv("CODE_EXECUTION_URL", "http://code_execution_service:8002")
+# code_execution_service requires this on every route (see its app/security.py) —
+# without it, any container reachable on app-network could run arbitrary shell
+# commands there (it has /var/run/docker.sock mounted for its own sandboxing).
+CODE_EXEC_INTERNAL_KEY = os.getenv("CODE_EXECUTION_INTERNAL_SERVICE_KEY", "")
 
 class _GitHubTool(BaseIntegrationSkill):
     """Base for GitHub API tools. Requires user's GitHub token via BYOK."""
@@ -107,7 +111,7 @@ class _GitTool(BaseIntegrationSkill):
                 resp = await client.post(
                     f"{CODE_EXEC_URL}/terminal/execute",
                     json={"command": self._cmd, "timeout": 25},
-                    headers={"x-user-id": user_id},
+                    headers={"x-user-id": user_id, "x-internal-service-key": CODE_EXEC_INTERNAL_KEY},
                 )
                 resp.raise_for_status()
                 data = resp.json()
